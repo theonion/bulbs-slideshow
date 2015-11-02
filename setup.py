@@ -15,6 +15,7 @@ os.chdir(
 install_requires = [
     "django>=1.7,<1.9",
     "django-jsonfield",
+    "djangorestframework>=3.0,<4.0"
     # "parent-swap==0.0.2"
 ]
 
