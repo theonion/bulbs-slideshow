@@ -1,10 +1,13 @@
 from django.test import TestCase
 
-from django_slideshow.models import Slideshow
+from ..models import Slideshow
+from ..serializers import SlideshowSerializer
 
 
 class SlideshowTestCase(TestCase):
+
     """Tests for the `Slideshow` model class."""
+
     def test_create(self):
         data = [{
             'slide1': 1,
@@ -34,3 +37,7 @@ class SlideshowTestCase(TestCase):
         slideshow = Slideshow.objects.create(slides=data)
         slideshow.delete()
         self.assertFalse(Slideshow.objects.filter(id=slideshow.id))
+
+    def test_get_serializer_class(self):
+        serializer_class = Slideshow.get_serializer_class()
+        self.assertEqual(serializer_class, SlideshowSerializer)

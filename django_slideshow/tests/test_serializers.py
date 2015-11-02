@@ -5,7 +5,9 @@ from ..serializers import SlideshowSerializer
 
 
 class SlideshowSerializerTestCase(TestCase):
+
     """Tests for the `SlideshowSerializer`"""
+
     def test_instance_serialization(self):
         data = [{
             'slide1': 1,
