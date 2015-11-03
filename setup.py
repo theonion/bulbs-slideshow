@@ -3,7 +3,7 @@ import os
 from setuptools import find_packages, setup
 
 name = 'django_slideshow'
-version = '0.0.6'
+version = '0.0.7'
 
 # allow setup.py to be run from any path
 os.chdir(
