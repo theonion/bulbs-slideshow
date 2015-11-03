@@ -39,6 +39,7 @@ class Migration(migrations.Migration):
     else:
 
         dependencies = [
+
         ]
 
         operations = [

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import os
-from setuptools import setup
+from setuptools import find_packages, setup
 
 name = 'django_slideshow'
-version = '0.0.2'
+version = '0.0.6'
 
 # allow setup.py to be run from any path
 os.chdir(
@@ -17,16 +17,14 @@ def get_packages(package):
     """
     Return root package and all sub-packages.
     """
-    return [dirpath
-            for dirpath, dirnames, filenames in os.walk(package)
-            if os.path.exists(os.path.join(dirpath, '__init__.py'))]
+    packages = [dirpath for dirpath, dirnames, filenames in os.walk(package) if os.path.exists(os.path.join(dirpath, '__init__.py'))]
+    return packages
 
 
 install_requires = [
-    "django>=1.7,<1.9",
+    "django>=1.7",
     "django-jsonfield",
-    "djangorestframework>=3.0,<4.0"
-    # "parent-swap==0.0.2"
+    "djangorestframework>=3.0"
 ]
 
 setup(
@@ -39,5 +37,5 @@ setup(
     include_package_data=True,
     install_requires=install_requires,
     test_suite='django_slideshow.tests.runtests.main',
-    packages=get_packages('django_slideshow'),
+    packages=find_packages()
 )
