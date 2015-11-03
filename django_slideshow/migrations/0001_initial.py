@@ -9,41 +9,36 @@ import jsonfield.fields
 
 class Migration(migrations.Migration):
 
-    """
-    Current going to handle the dependency swap manually until parent_swap is more stable
-    & the slideshow repo is not publicly exposed (YET).
-    """
+    is_bulbs_content = getattr(settings, 'IS_BULBS_CONTENT', False)
 
-    base_class = getattr(settings, 'DEFAULT_BASE_CLASS', None)
-    if base_class:
+    if is_bulbs_content:
 
         dependencies = [
-            ('content', '0001_initial'),
+            ('content', '0001_initial')
         ]
 
         operations = [
             migrations.CreateModel(
                 name='Slideshow',
-                fields=[(
-                    'content_ptr', models.OneToOneField(
-                        parent_link=True,
-                        auto_created=True,
-                        primary_key=True,
-                        serialize=False,
-                        to='content.Content'
-                    )
-                )],
-                options={
-                    'abstract': False,
-                },
-                bases=('content.content',)
-            ),
+                fields=[
+                    (
+                        'content_ptr',
+                        models.OneToOneField(
+                            parent_link=True,
+                            auto_created=True,
+                            primary_key=True,
+                            serialize=False,
+                            to='content.Content'
+                        )
+                    ),
+                    ('slides', jsonfield.fields.JSONField(default=[], blank=True))
+                ]
+            )
         ]
 
     else:
 
         dependencies = [
-
         ]
 
         operations = [
@@ -60,6 +55,6 @@ class Migration(migrations.Migration):
                         )
                     ),
                     ('slides', jsonfield.fields.JSONField(default=[], blank=True)),
-                ]
-            )
+                ],
+            ),
         ]
