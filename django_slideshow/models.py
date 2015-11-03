@@ -22,24 +22,15 @@ def get_base_class():
     return models.Model
 
 
-class AbstractSlideshow(get_base_class()):
-    """
-    Added to avoid the current conflict of primary_key fields. models.E005.
-    """
+class Slideshow(get_base_class()):
+
+    slides = JSONField(default=[], blank=True)
 
     class Meta:
-        abstract = True
+        abstract = False
 
     @classmethod
     def get_serializer_class(cls):
         # Do not like this, but we currently rely on the `get_serializer_class` method.
         from .serializers import SlideshowSerializer
         return SlideshowSerializer
-
-
-class Slideshow(AbstractSlideshow):
-
-    slides = JSONField(default=[], blank=True)
-
-    class Meta:
-        abstract = False
