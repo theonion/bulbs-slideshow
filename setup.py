@@ -24,7 +24,8 @@ def get_packages(package):
 install_requires = [
     "django>=1.7",
     "django-jsonfield",
-    "djangorestframework>=3.0"
+    "djangorestframework>=3.0",
+    "elasticsearch-dsl<=1.0"
 ]
 
 setup(

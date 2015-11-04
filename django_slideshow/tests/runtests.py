@@ -24,6 +24,8 @@ INTERNAL_APPS = [
 ]
 INSTALLED_APPS = EXTERNAL_APPS + INTERNAL_APPS
 
+API_ROUTE = r'api/'
+
 if not settings.configured:
     settings.configure(
         DATABASES={
@@ -37,6 +39,7 @@ if not settings.configured:
         TEMPLATE_DIRS=(
             os.path.join(os.path.dirname(__file__), '../templates'),
         ),
+        API_ROUTE=API_ROUTE
     )
 
 

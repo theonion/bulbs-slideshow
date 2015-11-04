@@ -2,6 +2,7 @@ from django.apps import apps
 from django.conf import settings
 from django.db import models
 
+from elasticsearch_dsl import field
 from jsonfield import JSONField
 
 
@@ -22,12 +23,23 @@ def get_base_class():
     return models.Model
 
 
-class Slideshow(get_base_class()):
+BaseClass = get_base_class()
+
+
+class Slideshow(BaseClass):
 
     slides = JSONField(default=[], blank=True)
 
     class Meta:
         abstract = False
+
+    class Mapping:
+
+        slides = field.Object()
+
+        class Meta:
+
+            dynamic = False
 
     @classmethod
     def get_serializer_class(cls):
