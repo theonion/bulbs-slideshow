@@ -47,7 +47,8 @@ class Slideshow(BaseClass):
 
             dynamic = False
 
-    # def get_absolute_url(reverse())
+    def get_absolute_url(self):
+        return reverse("slideshows:slideshow-detail", kwargs={"slug": self.slug, "pk": self.pk})
 
     @classmethod
     def get_serializer_class(cls):

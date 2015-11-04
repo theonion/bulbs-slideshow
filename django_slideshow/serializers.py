@@ -7,7 +7,6 @@ from .models import Slideshow
 
 def get_base_serializer():
     default_serializer_name = getattr(settings, 'DEFAULT_SERIALIZER', None)
-    import pdb; pdb.set_trace()
     if default_serializer_name:
         try:
             mod_name, sp, serializer = default_serializer_name.rpartition('.')
