@@ -23,7 +23,12 @@ def get_base_class():
     return models.Model
 
 
+def get_base_mapping(base_cls):
+    return getattr(BaseClass, 'Mapping', object)
+
+
 BaseClass = get_base_class()
+BaseMapping = get_base_mapping(BaseClass)
 
 
 class Slideshow(BaseClass):
@@ -33,7 +38,7 @@ class Slideshow(BaseClass):
     class Meta:
         abstract = False
 
-    class Mapping:
+    class Mapping(BaseMapping):
 
         slides = field.Object()
 
