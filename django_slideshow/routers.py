@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
 
-from .views import SlideshowViewSet
+from .viewsets import SlideshowViewSet
 
 router = DefaultRouter(trailing_slash=True)
 router.register("slideshows", SlideshowViewSet, "slideshow")
