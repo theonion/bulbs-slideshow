@@ -1,5 +1,6 @@
 from django.apps import apps
 from django.conf import settings
+from django.core.urlresolvers import reverse
 from django.db import models
 
 from elasticsearch_dsl import field
@@ -45,6 +46,8 @@ class Slideshow(BaseClass):
         class Meta:
 
             dynamic = False
+
+    # def get_absolute_url(reverse())
 
     @classmethod
     def get_serializer_class(cls):
