@@ -12,15 +12,6 @@ os.chdir(
     )
 )
 
-
-def get_packages(package):
-    """
-    Return root package and all sub-packages.
-    """
-    packages = [dirpath for dirpath, dirnames, filenames in os.walk(package) if os.path.exists(os.path.join(dirpath, '__init__.py'))]
-    return packages
-
-
 install_requires = [
     "django>=1.7",
     "django-jsonfield",
