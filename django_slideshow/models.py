@@ -52,7 +52,6 @@ class Slideshow(BaseClass):
         abstract = False
 
     class Mapping(BaseMapping):
-        slides = field.Object()
 
         class Meta:
-            dynamic = False
+            excludes = ("slides",)
