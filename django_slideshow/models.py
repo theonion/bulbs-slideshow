@@ -36,22 +36,23 @@ class Slideshow(BaseClass):
 
     slides = JSONField(default=[], blank=True)
 
-    class Meta:
-        abstract = False
-
-    class Mapping(BaseMapping):
-
-        slides = field.Object()
-
-        class Meta:
-
-            dynamic = False
-
     def get_absolute_url(self):
         return reverse("slideshows:slideshow-detail", kwargs={"slug": self.slug, "pk": self.pk})
+
+    def get_template(self):
+        return "partials/slideshow-detail.html"
 
     @classmethod
     def get_serializer_class(cls):
         # Do not like this, but we currently rely on the `get_serializer_class` method.
         from .serializers import SlideshowSerializer
         return SlideshowSerializer
+
+    class Meta:
+        abstract = False
+
+    class Mapping(BaseMapping):
+        slides = field.Object()
+
+        class Meta:
+            dynamic = False
