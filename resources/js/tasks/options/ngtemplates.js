@@ -6,7 +6,7 @@
 module.exports = {
   options: {
     url: function (url) {
-      return 'bulbs/' + url;
+      return 'bulbs-cms/' + url;
     },
     htmlmin: {
       collapseBooleanAttributes:      true,

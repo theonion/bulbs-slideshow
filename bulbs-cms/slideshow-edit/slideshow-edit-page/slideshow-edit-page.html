@@ -1,0 +1,20 @@
+<div class="slideshow-page">
+  <div class="form-control form-group clearfix page-text">
+    <onion-editor ng-model="page.name" role="singleline" formatting="bold,italic,strike" placeholder="Name (optionally used for display in CMS)"></onion-editor>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="center-block">
+        <betty-editable
+            image="page.image"
+            ratio="16x9"
+            placeholder-text="Top Image"
+            add-styles="fa fa-camera-retro add-image-box p-img">
+        </betty-editable>
+      </div>
+    </div>
+  </div>
+  <div class="well">
+    <onion-editor ng-model="page.body" role="multiline" inline-objects="{% static 'cms/onion-inline-config.json' %}" placeholder="Body (displays on site)"></onion-editor>
+  </div>
+</div>
