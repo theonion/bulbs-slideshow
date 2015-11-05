@@ -2,7 +2,8 @@
 
 
 angular.module('bulbs.slideshow.edit', [
-
+  'bulbs.slideshow.edit.page',
+  'cms.image'
 ])
 
   .directive('slideshowEdit', [
@@ -14,8 +15,8 @@ angular.module('bulbs.slideshow.edit', [
           article: '='
         },
         controller: [
-          '$scope', '$window', '$timeout',
-          function($scope, $window, $timeout) {
+          '$scope', '$window', '$timeout', 'CmsImage',
+          function($scope, $window, $timeout, CmsImage) {
             $scope.isEditing = false;
             $scope.selectedPage = null;
             $scope.$watch('article', function (newVal, oldVal) {
@@ -30,7 +31,7 @@ angular.module('bulbs.slideshow.edit', [
               $scope.isEditing = !!page;
               if ($scope.isEditing) {
                 $timeout(function () {
-                    $window.picturefill($('.slideshow-page')[0]);
+                    CmsImage.picturefill($('.slideshow-page')[0]);
                 });
               }
             };
