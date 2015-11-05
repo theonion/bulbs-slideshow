@@ -4,7 +4,25 @@
 *.pyc
 *.egg-info
 *.eggs
+build
 
 
-build/*
-dist/*
+########
+# node #
+########
+.tmp
+dist
+node_modules
+bower_components
+
+
+#######
+# sass #
+#######
+.sass-cache
+
+
+#######
+# etc #
+#######
+.DS_Store
