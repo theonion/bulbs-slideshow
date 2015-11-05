@@ -1,0 +1,39 @@
+<div class="slideshow row">
+  <div class="col-xs-4">
+    <div class="navbar row">
+      <div class="navbar-brand">Pages</div>
+      <div class="navbar-form btn-group pull-right">
+        <button class="btn btn-default btn-sm" ng-click="onAddPage()">
+          <span class="glyphicon glyphicon-plus"></span> Page
+        </button>
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item clearfix" ng-repeat="page in article.slides" ng-class="{active:selectedPage && selectedPage.order == page.order }" ng-click="selectPage(page)">
+        <div class="btn-group btn-group-vertical pull-right">
+          <button class="btn btn-link btn-xs" ng-click="onDeletePage(article.slides, page)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <button class="btn btn-link btn-xs" ng-click="onMoveListObject(article.slides, $index, $index - 1)" ng-disabled="$index == 0">
+            <span class="glyphicon glyphicon-chevron-up"></span>
+          </button>
+          <button class="btn btn-link btn-xs" ng-click="onMoveListObject(article.slides, $index, $index + 1)" ng-disabled="$last">
+            <span class="glyphicon glyphicon-chevron-down"></span>
+          </button>
+        </div>
+        <span ng-show="!!page.name" ng-bind-html="page.name"></span>
+        <span ng-show="!page.name">Page {{ $index + 1}}</span>
+      </li>
+    </ul>
+  </div>
+  <div class="col-xs-8">
+    <div ng-show="!isEditing">
+      <h3><span class="fa fa-arrow-left"></span> Create or select a page</h3>
+    </div>
+    <div ng-show="isEditing">
+      <slideshow-page pages="article.slides" page="selectedPage"
+        select-page="selectPage(selectedPage)">
+      </slideshow-page>
+    </div>
+  </div>
+</div>
