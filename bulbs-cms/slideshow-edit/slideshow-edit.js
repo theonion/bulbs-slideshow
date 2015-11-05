@@ -21,7 +21,7 @@ angular.module('bulbs.slideshow.edit', [
             $scope.selectedPage = null;
             $scope.$watch('article', function (newVal, oldVal) {
               if ($scope.selectedPage) {
-                $scope.selectedPage = _.find($scope.pages, function (value) {
+                $scope.selectedPage = _.find($scope.article.slides, function (value) {
                   return value.order == $scope.selectedPage.order;
                 });
               }
