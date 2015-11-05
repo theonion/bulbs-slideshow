@@ -7,7 +7,7 @@ angular.module('bulbs.slideshow.edit', [
     function () {
       return {
         restrict: 'E',
-        templateUrl: 'bulbs/slideshow-edit/slideshow-edit.html',
+        templateUrl: 'bulbs-cms/slideshow-edit/slideshow-edit.html',
         scope: {
           article: '='
         }
