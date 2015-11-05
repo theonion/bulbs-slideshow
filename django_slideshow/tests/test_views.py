@@ -1,4 +1,5 @@
 import json
+import sys
 
 from django.core.urlresolvers import reverse
 from django.test import TestCase
@@ -28,10 +29,16 @@ class SlideshowAPITestCase(TestCase):
         id = resp.data.get('id')
         slides = resp.data.get('slides')
         self.assertIsNotNone(id)
-        self.assertCountEqual(slides, slide_data)
+        if sys.version_info.major < 3:
+            self.assertItemsEqual(slides, slide_data)
+        else:
+            self.assertCountEqual(slides, slide_data)
         slideshow = Slideshow.objects.get(id=int(id))
         self.assertIsNotNone(slideshow)
-        self.assertCountEqual(slideshow.slides, slide_data)
+        if sys.version_info.major < 3:
+            self.assertItemsEqual(slideshow.slides, slide_data)
+        else:
+            self.assertCountEqual(slideshow.slides, slide_data)
 
     def test_get(self):
         slide_data = [{
@@ -47,7 +54,10 @@ class SlideshowAPITestCase(TestCase):
             'id': slideshow.id,
             'slides': slide_data
         }
-        self.assertCountEqual(resp.data, expected_slideshow)
+        if sys.version_info.major < 3:
+            self.assertItemsEqual(resp.data, expected_slideshow)
+        else:
+            self.assertCountEqual(resp.data, expected_slideshow)
 
     def test_put(self):
         slide_data = [{
