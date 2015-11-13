@@ -3,7 +3,7 @@ import os
 from setuptools import find_packages, setup
 
 name = 'django_slideshow'
-version = '0.0.2'
+version = '0.0.6'
 
 # allow setup.py to be run from any path
 os.chdir(
@@ -14,6 +14,7 @@ os.chdir(
 
 install_requires = [
     "django>=1.7",
+    "django-betty-cropper==0.2.3",
     "django-jsonfield",
     "djangorestframework>=3.0",
     "djes<2.0",

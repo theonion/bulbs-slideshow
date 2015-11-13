@@ -2,6 +2,8 @@ from django.conf import settings
 
 from rest_framework import serializers
 
+from djbetty.serializers import ImageFieldSerializer
+
 from .models import Slideshow
 
 
@@ -23,6 +25,8 @@ BaseSerializer = get_base_serializer()
 
 
 class SlideshowSerializer(BaseSerializer):
+
+    detail_image = ImageFieldSerializer(required=False, allow_null=True)
 
     class Meta:
         model = Slideshow
