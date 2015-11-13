@@ -45,13 +45,14 @@ class SlideshowAPITestCase(TestCase):
             'slide1': 1,
             'slide2': 2
         }]
-        slideshow = Slideshow.objects.create(slides=slide_data)
+        slideshow = Slideshow.objects.create(slides=slide_data, body='howdy')
         detail_url = reverse('slideshow-detail', kwargs={'pk': slideshow.id})
         resp = self.client.get(detail_url)
         self.assertEqual(resp.status_code, 200)
 
         expected_slideshow = {
             'id': slideshow.id,
+            'body': 'howdy',
             'slides': slide_data
         }
         if sys.version_info.major < 3:

@@ -13,10 +13,11 @@ class SlideshowSerializerTestCase(TestCase):
             'slide1': 1,
             'slide2': 2
         }]
-        slideshow = Slideshow.objects.create(slides=data)
+        slideshow = Slideshow.objects.create(slides=data, body='howdy')
         serializer = SlideshowSerializer(slideshow)
         expected_data = {
             'id': slideshow.id,
+            'body': 'howdy',
             'slides': data
         }
         self.assertEqual(serializer.data, expected_data)
@@ -26,24 +27,27 @@ class SlideshowSerializerTestCase(TestCase):
             'slide1': 1,
             'slide2': 2
         }]
-        slideshow1 = Slideshow.objects.create(slides=slideshow1_data)
+        slideshow1 = Slideshow.objects.create(slides=slideshow1_data, body='God')
         slideshow2_data = [{
             'slide1': 3,
             'slide2': 4
         }]
-        slideshow2 = Slideshow.objects.create(slides=slideshow2_data)
+        slideshow2 = Slideshow.objects.create(slides=slideshow2_data, body='howdy')
         serializer = SlideshowSerializer(Slideshow.objects.all(), many=True)
         expected_data = [{
             'id': slideshow1.id,
+            'body': 'God',
             'slides': slideshow1_data
         }, {
             'id': slideshow2.id,
+            'body': 'howdy',
             'slides': slideshow2_data
         }]
         self.assertEqual(serializer.data, expected_data)
 
     def test_create(self):
         data = {
+            'body': '',
             'slides': [{
                 'slide1': 1,
                 'slide2': 2

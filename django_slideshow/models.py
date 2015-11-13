@@ -35,6 +35,7 @@ BaseMapping = get_base_mapping(BaseClass)
 class Slideshow(BaseClass):
 
     slides = JSONField(default=[], blank=True)
+    body = models.TextField(blank=True, default="")
 
     def get_absolute_url(self):
         return reverse("slideshows:slideshow-detail", kwargs={"slug": self.slug, "pk": self.pk})
