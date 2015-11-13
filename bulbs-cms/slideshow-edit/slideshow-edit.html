@@ -4,7 +4,7 @@
       <div class="navbar-brand">Pages</div>
       <div class="navbar-form btn-group pull-right">
         <button class="btn btn-default btn-sm" ng-click="onAddPage()">
-          <span class="glyphicon glyphicon-plus"></span> Page
+          <span class="fa fa-plus"></span> Page
         </button>
       </div>
     </div>
@@ -12,13 +12,13 @@
       <li class="list-group-item clearfix" ng-repeat="page in article.slides" ng-class="{active:selectedPage && selectedPage.order == page.order }" ng-click="selectPage(page)">
         <div class="btn-group btn-group-vertical pull-right">
           <button class="btn btn-link btn-xs" ng-click="onDeletePage(article.slides, page)">
-            <span class="glyphicon glyphicon-remove"></span>
+            <span class="fa fa-remove"></span>
           </button>
           <button class="btn btn-link btn-xs" ng-click="onMoveListObject(article.slides, $index, $index - 1)" ng-disabled="$index == 0">
-            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="fa fa-chevron-up"></span>
           </button>
           <button class="btn btn-link btn-xs" ng-click="onMoveListObject(article.slides, $index, $index + 1)" ng-disabled="$last">
-            <span class="glyphicon glyphicon-chevron-down"></span>
+            <span class="fa fa-chevron-down"></span>
           </button>
         </div>
         <span ng-show="!!page.name" ng-bind-html="page.name"></span>
