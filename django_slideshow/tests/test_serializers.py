@@ -18,7 +18,10 @@ class SlideshowSerializerTestCase(TestCase):
         expected_data = {
             'id': slideshow.id,
             'body': 'howdy',
-            'slides': data
+            'slides': data,
+            'detail_image': None,
+            'detail_image_caption': None,
+            'detail_image_alt': None
         }
         self.assertEqual(serializer.data, expected_data)
 
@@ -37,11 +40,17 @@ class SlideshowSerializerTestCase(TestCase):
         expected_data = [{
             'id': slideshow1.id,
             'body': 'God',
-            'slides': slideshow1_data
+            'slides': slideshow1_data,
+            'detail_image': None,
+            'detail_image_caption': None,
+            'detail_image_alt': None
         }, {
             'id': slideshow2.id,
             'body': 'howdy',
-            'slides': slideshow2_data
+            'slides': slideshow2_data,
+            'detail_image': None,
+            'detail_image_caption': None,
+            'detail_image_alt': None
         }]
         self.assertEqual(serializer.data, expected_data)
 
@@ -51,7 +60,10 @@ class SlideshowSerializerTestCase(TestCase):
             'slides': [{
                 'slide1': 1,
                 'slide2': 2
-            }]
+            }],
+            'detail_image': None,
+            'detail_image_caption': None,
+            'detail_image_alt': None
         }
         serializer = SlideshowSerializer(data=data)
         self.assertTrue(serializer.is_valid())

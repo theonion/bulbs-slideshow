@@ -3,8 +3,10 @@ from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 
-from elasticsearch_dsl import field
+from djbetty import ImageField
 from jsonfield import JSONField
+
+from .field import ElasticsearchImageField
 
 
 def get_base_class():
@@ -36,6 +38,15 @@ class Slideshow(BaseClass):
 
     slides = JSONField(default=[], blank=True)
     body = models.TextField(blank=True, default="")
+    detail_image_caption = models.CharField(max_length=255, null=True, blank=True, editable=False)
+    detail_image_alt = models.CharField(max_length=255, null=True, blank=True, editable=False)
+    detail_image = ImageField(
+        null=True,
+        default=None,
+        blank=True,
+        alt_field="detail_image_alt",
+        caption_field="detail_image_caption"
+    )
 
     def get_absolute_url(self):
         return reverse("slideshows:slideshow-detail", kwargs={"slug": self.slug, "pk": self.pk})
@@ -53,6 +64,7 @@ class Slideshow(BaseClass):
         abstract = False
 
     class Mapping(BaseMapping):
+        detail_image = ElasticsearchImageField()
 
         class Meta:
             excludes = ("slides",)

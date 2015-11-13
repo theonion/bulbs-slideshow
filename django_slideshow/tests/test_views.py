@@ -53,7 +53,10 @@ class SlideshowAPITestCase(TestCase):
         expected_slideshow = {
             'id': slideshow.id,
             'body': 'howdy',
-            'slides': slide_data
+            'slides': slide_data,
+            'detail_image': None,
+            'detail_image_caption': None,
+            'detail_image_alt': None
         }
         if sys.version_info.major < 3:
             self.assertItemsEqual(resp.data, expected_slideshow)
