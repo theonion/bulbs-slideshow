@@ -18,7 +18,7 @@ install_requires = [
     "django-jsonfield",
     "djangorestframework>=3.0",
     "djes<2.0",
-    "parent-swap==0.0.3"
+    "parent-swap==0.0.4"
 ]
 
 setup(
