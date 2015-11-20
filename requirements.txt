@@ -1,3 +1,7 @@
 django>=1.7
+django-betty-cropper==0.2.3
 django-jsonfield
 djangorestframework>=3.0
+djes<2.0
+
+git+https://0469c955e10241b40fffe0225e29a3c238aadf69:x-oauth-basic@github.com/theonion/parent-swap.git@overhaul#egg=parent-swap
