@@ -13,11 +13,10 @@ class SlideshowSerializerTestCase(TestCase):
             'slide1': 1,
             'slide2': 2
         }]
-        slideshow = Slideshow.objects.create(slides=data, body='howdy')
+        slideshow = Slideshow.objects.create(slides=data)
         serializer = SlideshowSerializer(slideshow)
         expected_data = {
             'id': slideshow.id,
-            'body': 'howdy',
             'slides': data,
             'detail_image': None,
             'detail_image_caption': None,
@@ -30,23 +29,21 @@ class SlideshowSerializerTestCase(TestCase):
             'slide1': 1,
             'slide2': 2
         }]
-        slideshow1 = Slideshow.objects.create(slides=slideshow1_data, body='God')
+        slideshow1 = Slideshow.objects.create(slides=slideshow1_data)
         slideshow2_data = [{
             'slide1': 3,
             'slide2': 4
         }]
-        slideshow2 = Slideshow.objects.create(slides=slideshow2_data, body='howdy')
+        slideshow2 = Slideshow.objects.create(slides=slideshow2_data)
         serializer = SlideshowSerializer(Slideshow.objects.all(), many=True)
         expected_data = [{
             'id': slideshow1.id,
-            'body': 'God',
             'slides': slideshow1_data,
             'detail_image': None,
             'detail_image_caption': None,
             'detail_image_alt': None
         }, {
             'id': slideshow2.id,
-            'body': 'howdy',
             'slides': slideshow2_data,
             'detail_image': None,
             'detail_image_caption': None,
@@ -56,7 +53,6 @@ class SlideshowSerializerTestCase(TestCase):
 
     def test_create(self):
         data = {
-            'body': '',
             'slides': [{
                 'slide1': 1,
                 'slide2': 2
