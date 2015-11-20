@@ -34,6 +34,7 @@ if not settings.configured:
                 "NAME": ":memory:"
             }
         },
+        DEFAULT_SERIALIZER='rest_framework.serializers.ModelSerializer',
         INSTALLED_APPS=INSTALLED_APPS,
         ROOT_URLCONF='django_slideshow.tests.urls',
         TEMPLATE_DIRS=(

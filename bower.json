@@ -1,7 +1,7 @@
 {
   "name": "bulbs-slideshow",
   "description": "Frontend dependencies for Slideshow component.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": true,
   "main": [
     "compat-builds/bulbs-cms-dist/slideshow.js",

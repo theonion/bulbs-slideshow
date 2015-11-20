@@ -1,43 +1,17 @@
-from django.apps import apps
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.db import models
 
 from djbetty import ImageField
 from jsonfield import JSONField
+from parent_swap import swap
 
 from .field import ElasticsearchImageField
 
 
-def get_base_class():
-    default_class_name = getattr(settings, 'DEFAULT_BASE_CLASS', None)
-
-    if default_class_name:
-        try:
-            sp = default_class_name.split('.')
-            app_name, cls_name = sp[-2], sp[-1]
-            app = apps.get_app(app_name)
-            base_cls = getattr(app, cls_name, None)
-            if base_cls:
-                return base_cls
-        except:
-            pass
-
-    return models.Model
-
-
-def get_base_mapping(base_cls):
-    return getattr(BaseClass, 'Mapping', object)
-
-
-BaseClass = get_base_class()
-BaseMapping = get_base_mapping(BaseClass)
-
-
-class Slideshow(BaseClass):
+class Slideshow(swap.get_base_model()):
 
     slides = JSONField(default=[], blank=True)
-    body = models.TextField(blank=True, default="")
+    # body = models.TextField(blank=True, default="")
     detail_image_caption = models.CharField(max_length=255, null=True, blank=True, editable=False)
     detail_image_alt = models.CharField(max_length=255, null=True, blank=True, editable=False)
     detail_image = ImageField(
@@ -63,7 +37,7 @@ class Slideshow(BaseClass):
     class Meta:
         abstract = False
 
-    class Mapping(BaseMapping):
+    class Mapping(swap.BaseMapping):
         detail_image = ElasticsearchImageField()
 
         class Meta:
