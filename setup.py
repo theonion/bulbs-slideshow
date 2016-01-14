@@ -13,7 +13,7 @@ os.chdir(
 )
 
 install_requires = [
-    "django>=1.7",
+    "django>=1.8,<1.9",
     "django-betty-cropper==0.2.3",
     "django-jsonfield",
     "djangorestframework>=3.0",
